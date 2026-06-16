@@ -1,0 +1,48 @@
+# Mock AI mode — no Ollama/GPU required (PostgreSQL + Next.js only)
+#
+# Start:  docker compose -f docker-compose.mock.yml up --build
+
+name: brus-mock
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: brus-postgres-mock
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: brus
+      POSTGRES_PASSWORD: brus
+      POSTGRES_DB: brus
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U brus -d brus"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: brus-app-mock
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      AUTH_SECRET: ${AUTH_SECRET:-dev-secret-change-me-in-production-32chars}
+      POSTGRES_URL: postgresql://brus:brus@postgres:5432/brus
+      USE_MOCK_AI: "1"
+      NODE_ENV: development
+    volumes:
+      - ./front:/app
+      - app_node_modules:/app/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  app_node_modules:
