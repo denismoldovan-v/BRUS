@@ -2,7 +2,7 @@
 
 PW projekt BRUS: **Prompt Injection Attack & Defense for LLMs**.
 
-## Quick Start for Instructor
+## Quick Start
 
 **Recommended (Demo Mode, no Ollama, no Llama download):**
 
