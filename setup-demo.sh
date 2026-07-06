@@ -22,14 +22,15 @@ if ! docker compose version >/dev/null 2>&1; then
   exit 1
 fi
 
-if [[ ! -d front ]] || [[ ! -f front/package.json ]] || [[ -z "$(ls -A front 2>/dev/null)" ]]; then
-  echo "==> Initializing front/ submodule..."
-  git submodule update --init --recursive
+if [[ -f .gitmodules ]]; then
+  if [[ ! -d front ]] || [[ ! -f front/package.json ]] || [[ ! -f front/Dockerfile ]]; then
+    echo "==> Initializing front/ submodule..."
+    git submodule update --init --recursive
+  fi
 fi
 
-if [[ ! -f front/package.json ]]; then
-  echo "ERROR: front/ is missing or empty. Clone the repository with submodules:"
-  echo "  git clone --recurse-submodules <repo-url>"
+if [[ ! -d front ]] || [[ ! -f front/package.json ]] || [[ ! -f front/Dockerfile ]]; then
+  echo "ERROR: front/ directory is missing or incomplete. Please clone the full repository."
   exit 1
 fi
 
