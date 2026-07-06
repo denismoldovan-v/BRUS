@@ -1,6 +1,6 @@
 # AI Security Demo
 
-Uniwersytecki projekt cyberbezpieczeństwa: **Prompt Injection Attack & Defense for LLMs**.
+PW projekt cyberbezpieczeństwa: **Prompt Injection Attack & Defense for LLMs**.
 
 ## Quick Start for Instructor
 
