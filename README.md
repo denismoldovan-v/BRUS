@@ -1,6 +1,6 @@
 # AI Security Demo
 
-PW projekt cyberbezpieczeństwa: **Prompt Injection Attack & Defense for LLMs**.
+PW projekt BRUS: **Prompt Injection Attack & Defense for LLMs**.
 
 ## Quick Start for Instructor
 
