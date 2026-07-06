@@ -31,12 +31,6 @@ chmod +x cleanup.sh
 
 ---
 
-## Demo Video
-
-The file `demo/demo.mp4` shows the project running with a **real Ollama LLM** (Full Ollama Mode). Use Demo Mode for quick evaluation; use the video or Full Ollama Mode to see live model behavior.
-
----
-
 ## Modes
 
 ### Demo Mode
